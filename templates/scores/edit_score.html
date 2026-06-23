@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="glass-card">
+
+        <h2>Edit Score</h2>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="mb-3">
+
+                <label>Score</label>
+
+                <input
+                    type="number"
+                    name="score"
+                    class="form-control"
+                    value="{{ score.score }}"
+                    required>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label>Date</label>
+
+                <input
+                    type="date"
+                    name="played_on"
+                    class="form-control"
+                    value="{{ score.played_on|date:'Y-m-d' }}"
+                    required>
+
+            </div>
+
+            <button
+                type="submit"
+                class="btn btn-success">
+
+                Update Score
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

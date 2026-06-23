@@ -1,0 +1,291 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Digital Heroes</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+
+
+<div class="container">
+
+    <a class="navbar-brand fw-bold fs-3" href="/">
+        Digital Heroes
+    </a>
+
+    <button class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav">
+
+        <span class="navbar-toggler-icon"></span>
+
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+        <ul class="navbar-nav ms-auto">
+
+            <li class="nav-item">
+                <a class="nav-link" href="/">
+                    Home
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/charities/">
+                    Charities
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/winners/">
+                    Winners
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/draws/">
+                    Draw Results
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/subscriptions/">
+                    Subscription
+                </a>
+            </li>
+
+            {% if user.is_authenticated %}
+
+            <li class="nav-item">
+                <a class="nav-link" href="/dashboard/">
+                    Dashboard
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/scores/list/">
+                    Scores
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/accounts/profile/">
+                    Profile
+                </a>
+            </li>
+
+            {% if user.is_staff %}
+
+            <li class="nav-item">
+                <a class="nav-link text-warning"
+                   href="/admin-analytics/">
+                   Admin Analytics
+                </a>
+            </li>
+
+            {% endif %}
+
+            <li class="nav-item">
+                <button
+                    onclick="toggleTheme()"
+                    class="btn btn-warning ms-2">
+
+                    🌙 Theme
+
+                </button>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link text-danger"
+                   href="/accounts/logout/">
+
+                    Logout
+
+                </a>
+            </li>
+
+            {% else %}
+
+            <li class="nav-item">
+                <a class="nav-link"
+                   href="/accounts/login/">
+
+                    Login
+
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="btn btn-primary ms-3"
+                   href="/accounts/register/">
+
+                    Join Now
+
+                </a>
+            </li>
+
+            {% endif %}
+
+        </ul>
+
+    </div>
+
+</div>
+
+
+</nav>
+
+{% block content %}
+{% endblock %}
+
+<footer class="footer mt-5 py-5">
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-4">
+
+            <h5>Digital Heroes</h5>
+
+            <p>
+                Play Golf. Win Rewards. Change Lives.
+                Join our community and support charities
+                while enjoying exciting golf challenges.
+            </p>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <h5>Quick Links</h5>
+
+            <ul class="list-unstyled">
+
+                <li>
+                    <a href="/" class="text-light">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/dashboard/" class="text-light">
+                        Dashboard
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/scores/list/" class="text-light">
+                        Scores
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/charities/" class="text-light">
+                        Charities
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <h5>Help & Support</h5>
+
+            <p>
+                📧 support@digitalheroes.com
+            </p>
+
+            <p>
+                📞 +91 98765 xxxxx
+            </p>
+
+            <p>
+                🕒 Mon - Fri : 9 AM - 6 PM
+            </p>
+
+            <p>
+                Need help? Contact our support team anytime.
+            </p>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div class="text-center">
+
+        <p>
+            © 2026 Digital Heroes. All Rights Reserved.
+        </p>
+
+        <p>
+            Built with Django, Bootstrap & Chart.js
+        </p>
+        <p>Aditya---------Aditya
+        </p>
+
+    </div>
+
+</div>
+
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+function toggleTheme() {
+
+    document.body.classList.toggle(
+        "dark-mode"
+    );
+
+    localStorage.setItem(
+        "theme",
+        document.body.classList.contains(
+            "dark-mode"
+        )
+    );
+}
+
+window.onload = function() {
+
+    if (
+        localStorage.getItem("theme")
+        === "true"
+    ) {
+
+        document.body.classList.add(
+            "dark-mode"
+        );
+    }
+}
+
+</script>
+
+</body>
+</html>

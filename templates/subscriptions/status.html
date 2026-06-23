@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+
+<div class="glass-card text-center">
+
+    <h2 class="mb-4">
+        Subscription Status
+    </h2>
+
+    {% if subscription %}
+
+        <h3>
+            {{ subscription.plan|title }} Plan
+        </h3>
+
+        <hr>
+
+        <p>
+            <strong>Start Date:</strong>
+            {{ subscription.start_date }}
+        </p>
+
+        <p>
+            <strong>Renewal Date:</strong>
+            {{ subscription.end_date }}
+        </p>
+
+        {% if subscription.is_active %}
+
+            <div class="alert alert-success">
+
+                Active Subscription
+
+            </div>
+
+        {% else %}
+
+            <div class="alert alert-danger">
+
+                Subscription Expired
+
+            </div>
+
+        {% endif %}
+
+        <a href="/subscriptions/"
+           class="btn btn-primary">
+
+            Change Plan
+
+        </a>
+
+    {% else %}
+
+        <div class="alert alert-warning">
+
+            No Active Subscription Found
+
+        </div>
+
+        <a href="/subscriptions/"
+           class="btn btn-success">
+
+            Subscribe Now
+
+        </a>
+
+    {% endif %}
+
+</div>
+
+</div>
+
+{% endblock %}

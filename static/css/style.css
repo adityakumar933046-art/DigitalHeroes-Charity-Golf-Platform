@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+:root{
+--primary:#7c3aed;
+--secondary:#ec4899;
+--dark:#0f172a;
+--card:#111827;
+--text:#f8fafc;
+}
+
+body{
+background:#0f172a;
+color:#ffffff;
+font-family:'Poppins',sans-serif;
+overflow-x:hidden;
+}
+
+.navbar{
+background:rgba(15,23,42,.85);
+backdrop-filter:blur(12px);
+padding:20px 0;
+}
+
+.navbar-brand{
+font-size:1.6rem;
+font-weight:700;
+}
+
+.nav-link{
+color:white !important;
+margin-left:15px;
+}
+
+.hero{
+min-height:90vh;
+display:flex;
+align-items:center;
+justify-content:center;
+
+
+background:
+radial-gradient(circle at top right,#7c3aed 0%,transparent 40%),
+radial-gradient(circle at bottom left,#ec4899 0%,transparent 40%),
+#0f172a;
+
+}
+
+.hero-title{
+font-size:5rem;
+font-weight:800;
+line-height:1.1;
+}
+
+.hero-text{
+font-size:1.3rem;
+color:#cbd5e1;
+margin-top:20px;
+}
+
+.glass-card{
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,0.1);
+border-radius:20px;
+padding:30px;
+transition:0.4s;
+}
+
+.glass-card:hover{
+transform:translateY(-10px);
+box-shadow:
+0 0 20px rgba(124,58,237,.3),
+0 0 40px rgba(124,58,237,.2);
+}
+
+.btn-primary{
+background:#7c3aed;
+border:none;
+padding:12px 30px;
+border-radius:10px;
+font-weight:600;
+}
+
+.btn-primary:hover
+
+.btn-outline-light{
+padding:12px 30px;
+border-radius:10px;
+font-weight:600;
+}
+
+section{
+padding-top:80px;
+padding-bottom:80px;
+}
+
+h1,h2,h3,h4,h5{
+font-weight:700;
+}
+
+.text-secondary{
+color:#94a3b8 !important;
+}
+
+.footer{
+background:#111827;
+padding:50px 0;
+color:#94a3b8;
+text-align:center;
+}
+
+.footer h5{
+color:white;
+margin-bottom:15px;
+}
+
+.footer p{
+margin-bottom:10px;
+}
+
+.card-number{
+font-size:2.5rem;
+font-weight:700;
+color:#7c3aed;
+}
+
+.prize-card h1{
+color:#7c3aed;
+font-weight:800;
+}
+
+.cta-section{
+text-align:center;
+}
+
+.cta-section h2{
+margin-bottom:20px;
+}
+
+@media(max-width:768px){
+
+
+.hero-title{
+    font-size:3rem;
+}
+
+.hero-text{
+    font-size:1rem;
+}
+
+.glass-card{
+    margin-bottom:20px;
+}
+
+}
+
+
+.form-control{
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: white !important;
+    padding: 14px;
+}
+
+.form-control::placeholder{
+    color: #cbd5e1 !important;
+    opacity: 1;
+}
+
+.form-control:focus{
+    background: rgba(255,255,255,0.12);
+    color: white !important;
+    border-color: #7c3aed;
+    box-shadow: 0 0 15px rgba(124,58,237,.4);
+}
+
+label{
+    color: white;
+    font-weight: 600;
+}
+
+.dark-mode {
+    background: #121212 !important;
+    color: white !important;
+}
+
+.dark-mode .glass-card {
+    background: rgba(255,255,255,0.08);
+    color: white;
+}
+
+.dark-mode .navbar {
+    background: #1a1a1a !important;
+}
+
+.dark-mode .footer {
+    background: #1a1a1a !important;
+}
+
+.dark-mode .table {
+    color: white;
+}
+
+.dark-mode a {
+    color: #4da6ff;
+}

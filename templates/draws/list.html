@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h1 class="text-center mb-5">
+        Draw Results
+    </h1>
+
+    {% if user.is_staff %}
+
+    <div class="text-center mb-4">
+
+        <a href="/draws/generate/"
+           class="btn btn-success btn-lg">
+
+            Generate New Draw
+
+        </a>
+
+    </div>
+
+    {% endif %}
+
+    {% if draws %}
+
+    <!-- Latest Draw -->
+
+    <div class="glass-card text-center mb-5">
+
+        <h2 class="text-warning">
+            Latest Draw
+        </h2>
+
+        <h3>
+            {{ draws.0.month }}/{{ draws.0.year }}
+        </h3>
+
+        <p>
+            {{ draws.0.get_draw_type_display }}
+        </p>
+
+        <h1 class="text-warning">
+
+            {{ draws.0.number1 }}
+            -
+            {{ draws.0.number2 }}
+            -
+            {{ draws.0.number3 }}
+            -
+            {{ draws.0.number4 }}
+            -
+            {{ draws.0.number5 }}
+
+        </h1>
+
+    </div>
+
+    {% endif %}
+
+    <!-- Draw History -->
+
+    <div class="row">
+
+        {% for draw in draws %}
+
+        <div class="col-md-4 mb-4">
+
+            <div class="glass-card">
+
+                <h3>
+                    {{ draw.month }}/{{ draw.year }}
+                </h3>
+
+                <p>
+                    Draw Type:
+                    {{ draw.get_draw_type_display }}
+                </p>
+
+                <p>
+                    Winning Numbers:
+                </p>
+
+                <h4 class="text-warning">
+
+                    {{ draw.number1 }}
+                    -
+                    {{ draw.number2 }}
+                    -
+                    {{ draw.number3 }}
+                    -
+                    {{ draw.number4 }}
+                    -
+                    {{ draw.number5 }}
+
+                </h4>
+
+                <hr>
+
+                <small>
+                    Published:
+                    {{ draw.created_at|date:"d M Y" }}
+                </small>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="text-center">
+
+            <h4>
+                No Draw Results Available
+            </h4>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

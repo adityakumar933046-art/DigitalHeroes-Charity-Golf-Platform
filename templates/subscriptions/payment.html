@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="glass-card text-center">
+
+        <h2>
+            Complete Payment
+        </h2>
+
+        <p class="mt-3">
+            Plan:
+            <strong>{{ plan|title }}</strong>
+        </p>
+
+        <p>
+            Amount:
+            <strong>₹{{ amount }}</strong>
+        </p>
+
+        <button
+            id="rzp-button"
+            class="btn btn-success btn-lg">
+
+            Pay Now
+
+        </button>
+
+    </div>
+
+</div>
+
+<form
+    id="payment-form"
+    action="/subscriptions/payment-success/"
+    method="POST">
+
+    {% csrf_token %}
+
+    <input
+        type="hidden"
+        name="razorpay_payment_id"
+        id="razorpay_payment_id">
+
+    <input
+        type="hidden"
+        name="razorpay_order_id"
+        value="{{ order_id }}">
+
+    <input
+        type="hidden"
+        name="plan"
+        value="{{ plan }}">
+
+</form>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+
+var options = {
+
+    "key": "{{ key }}",
+
+    "amount": "{{ amount }}00",
+
+    "currency": "INR",
+
+    "name": "Digital Heroes",
+
+    "description": "{{ plan|title }} Subscription",
+
+    "order_id": "{{ order_id }}",
+
+    "handler": function (response) {
+
+        document.getElementById(
+            "razorpay_payment_id"
+        ).value = response.razorpay_payment_id;
+
+        document.getElementById(
+            "payment-form"
+        ).submit();
+
+    },
+
+    "theme": {
+
+        "color": "#6f42c1"
+
+    }
+
+};
+
+var rzp = new Razorpay(options);
+
+document.getElementById(
+    'rzp-button'
+).onclick = function(e) {
+
+    rzp.open();
+
+    e.preventDefault();
+
+}
+
+</script>
+
+{% endblock %}

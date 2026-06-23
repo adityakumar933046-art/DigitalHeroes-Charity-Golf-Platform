@@ -1,0 +1,319 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h1 class="mb-4">
+        Welcome, {{ request.user.username }}
+    </h1>
+
+    <!-- Analytics Cards -->
+
+    <div class="row g-4">
+
+        <div class="col-md-3">
+            <div class="glass-card text-center">
+                <h5>Total Scores</h5>
+                <h2>{{ total_scores }}</h2>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="glass-card text-center">
+                <h5>Winners</h5>
+                <h2>{{ total_winners }}</h2>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="glass-card text-center">
+                <h5>Draws</h5>
+                <h2>{{ total_draws }}</h2>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="glass-card text-center">
+                <h5>Charities</h5>
+                <h2>{{ total_charities }}</h2>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Selected Charity -->
+
+    <div class="glass-card mt-4">
+
+        <h3>Your Selected Charity</h3>
+
+        {% if selected_charity %}
+
+            <h4>{{ selected_charity.name }}</h4>
+
+            <p>
+                Donation Percentage:
+                {{ donation_percentage }}%
+            </p>
+
+        {% else %}
+
+            <p>No charity selected yet.</p>
+
+            <a href="/charities/" class="btn btn-primary">
+                Select Charity
+            </a>
+
+        {% endif %}
+
+    </div>
+
+    <!-- Subscription Status -->
+
+    <div class="glass-card mt-4">
+
+        <h3>
+            Subscription Status
+        </h3>
+
+        {% if subscription %}
+
+            <p>
+                Plan:
+                {{ subscription.plan|title }}
+            </p>
+
+            <p>
+                Renewal Date:
+                {{ subscription.end_date }}
+            </p>
+
+            <p class="text-success">
+                Active Subscription
+            </p>
+
+        {% else %}
+
+            <p>
+                No Active Subscription
+            </p>
+
+            <a href="/subscriptions/"
+               class="btn btn-primary">
+
+                Subscribe Now
+
+            </a>
+
+        {% endif %}
+
+    </div>
+
+    <!-- Participation Summary -->
+
+    <div class="glass-card mt-4">
+
+        <h3>
+            Participation Summary
+        </h3>
+
+        <p>
+            Draws Entered:
+            {{ draws_entered }}
+        </p>
+
+        <p>
+            Upcoming Draws:
+            {{ total_draws }}
+        </p>
+
+    </div>
+
+    <!-- Winnings Overview -->
+
+    <div class="glass-card mt-4">
+
+        <h3>
+            Winnings Overview
+        </h3>
+
+        <p>
+            Total Won:
+            ₹{{ total_won }}
+        </p>
+
+        <p>
+            Current Payment Status:
+            {{ payment_status }}
+        </p>
+
+    </div>
+
+    <!-- Quick Actions -->
+
+    <div class="glass-card mt-5">
+
+        <h3 class="mb-4">
+            Quick Actions
+        </h3>
+
+        <a href="/scores/add/" class="btn btn-primary me-2">
+            Add Score
+        </a>
+
+        <a href="/scores/list/" class="btn btn-outline-light me-2">
+            View Scores
+        </a>
+
+        <a href="/charities/" class="btn btn-outline-light me-2">
+            Charities
+        </a>
+
+        <a href="/draws/" class="btn btn-outline-light me-2">
+            Draw Results
+        </a>
+
+        <a href="/subscriptions/" class="btn btn-success">
+            Subscription Plans
+        </a>
+
+    </div>
+
+    <!-- Recent Scores -->
+
+    <div class="glass-card mt-5">
+
+        <h3 class="mb-4">
+            Recent Scores
+        </h3>
+
+        <table class="table table-dark table-hover">
+
+            <thead>
+                <tr>
+                    <th>Score</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for score in scores %}
+
+                <tr>
+                    <td>{{ score.score }}</td>
+                    <td>{{ score.played_on }}</td>
+                </tr>
+
+                {% empty %}
+
+                <tr>
+                    <td colspan="2" class="text-center">
+                        No Scores Added Yet
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <!-- Score Analytics -->
+
+    <div class="glass-card mt-5">
+
+        <h3 class="mb-4">
+            Score Analytics
+        </h3>
+
+        <canvas id="scoreChart"></canvas>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const ctx = document.getElementById('scoreChart');
+
+new Chart(ctx, {
+
+    type: 'line',
+
+    data: {
+
+        labels: [
+            {% for date in score_dates %}
+                "{{ date }}",
+            {% endfor %}
+        ],
+
+        datasets: [{
+
+            label: 'Golf Scores',
+
+            data: [
+                {% for score in score_values %}
+                    {{ score }},
+                {% endfor %}
+            ],
+
+            borderColor: '#8b5cf6',
+            backgroundColor: 'rgba(139,92,246,0.2)',
+            borderWidth: 3,
+            tension: 0.4,
+            fill: true
+
+        }]
+
+    },
+
+    options: {
+
+        responsive: true,
+
+        plugins: {
+
+            legend: {
+
+                labels: {
+                    color: 'white'
+                }
+
+            }
+
+        },
+
+        scales: {
+
+            x: {
+
+                ticks: {
+                    color: 'white'
+                }
+
+            },
+
+            y: {
+
+                ticks: {
+                    color: 'white'
+                }
+
+            }
+
+        }
+
+    }
+
+});
+
+</script>
+
+{% endblock %}

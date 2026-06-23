@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+
+<div class="glass-card">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h2>My Scores</h2>
+
+        <div>
+
+            <a
+                href="/scores/add/"
+                class="btn btn-primary">
+
+                Add Score
+
+            </a>
+
+            <a
+                href="/scores/export/"
+                class="btn btn-success">
+
+                Export CSV
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <table class="table table-dark table-hover mt-4">
+
+        <thead>
+
+            <tr>
+                <th>Score</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for score in scores %}
+
+            <tr>
+
+                <td>{{ score.score }}</td>
+
+                <td>{{ score.played_on }}</td>
+
+                <td>
+
+                    <a
+                        href="/scores/edit/{{ score.id }}/"
+                        class="btn btn-warning btn-sm">
+
+                        Edit
+
+                    </a>
+
+                    <a
+                        href="/scores/delete/{{ score.id }}/"
+                        class="btn btn-danger btn-sm"
+                        onclick="return confirm('Are you sure you want to delete this score?')">
+
+                        Delete
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+            {% empty %}
+
+            <tr>
+
+                <td colspan="3" class="text-center">
+
+                    No Scores Available
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+</div>
+
+{% endblock %}

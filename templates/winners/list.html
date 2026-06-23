@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+
+<h1 class="text-center mb-5">
+    Recent Winners
+</h1>
+
+<form method="GET" class="mb-4">
+
+    <input
+        type="text"
+        name="q"
+        value="{{ search }}"
+        class="form-control"
+        placeholder="Search Winner">
+
+</form>
+
+<div class="row">
+
+    {% for winner in winners %}
+
+    <div class="col-md-4 mb-4">
+
+        <div class="glass-card text-center">
+
+            <h3>{{ winner.name }}</h3>
+
+            <h4>₹{{ winner.prize_amount }}</h4>
+
+            <p>
+                {{ winner.winning_date }}
+            </p>
+
+            <hr>
+
+            <p>
+                <strong>Verification Status:</strong>
+                {{ winner.verification_status }}
+            </p>
+
+            <p>
+                <strong>Payment Status:</strong>
+                {{ winner.payment_status }}
+            </p>
+
+            {% if winner.verification_status == "Approved" %}
+
+                <p class="text-success">
+                    ✅ Verified Winner
+                </p>
+
+            {% elif winner.verification_status == "Rejected" %}
+
+                <p class="text-danger">
+                    ❌ Verification Rejected
+                </p>
+
+            {% else %}
+
+                <p class="text-warning">
+                    ⏳ Pending Verification
+                </p>
+
+            {% endif %}
+
+            {% if winner.proof_image %}
+
+                <img
+                    src="{{ winner.proof_image.url }}"
+                    class="img-fluid rounded mt-3"
+                    alt="Winner Proof">
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    {% empty %}
+
+    <div class="text-center">
+
+        <h4>
+            No Winners Available
+        </h4>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+<div class="text-center mt-4">
+
+    {% if winners.has_previous %}
+
+        <a
+            href="?page={{ winners.previous_page_number }}"
+            class="btn btn-outline-light">
+
+            Previous
+
+        </a>
+
+    {% endif %}
+
+    <span class="mx-3">
+
+        Page {{ winners.number }}
+        of
+        {{ winners.paginator.num_pages }}
+
+    </span>
+
+    {% if winners.has_next %}
+
+        <a
+            href="?page={{ winners.next_page_number }}"
+            class="btn btn-outline-light">
+
+            Next
+
+        </a>
+
+    {% endif %}
+
+</div>
+
+</div>
+
+{% endblock %}

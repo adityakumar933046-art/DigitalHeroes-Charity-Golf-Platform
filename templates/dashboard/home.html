@@ -1,0 +1,399 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<section class="hero">
+
+    <div class="container text-center">
+
+        <h1 class="hero-title">
+            Play Golf.
+            <br>
+            Win Rewards.
+            <br>
+            Change Lives.
+        </h1>
+
+        <p class="hero-text">
+            Track your scores, support your favorite charity,
+            and participate in monthly prize draws.
+        </p>
+
+        <div class="mt-4">
+
+            <a href="/accounts/register/"
+               class="btn btn-primary btn-lg me-3">
+
+                Get Started
+
+            </a>
+
+            <a href="/charities/"
+               class="btn btn-outline-light btn-lg">
+
+                Explore Charities
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Latest Winners -->
+
+<section class="container py-5">
+
+    <div class="text-center mb-5">
+
+        <h2>
+            Latest Winners
+        </h2>
+
+    </div>
+
+    <div class="row g-4">
+
+        {% for winner in latest_winners %}
+
+        <div class="col-md-4">
+
+            <div class="glass-card text-center">
+
+                <h3>
+                    {{ winner.name }}
+                </h3>
+
+                <h4>
+                    ₹{{ winner.prize_amount }}
+                </h4>
+
+                <p>
+                    {{ winner.winning_date }}
+                </p>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="col-12 text-center">
+
+            <h4>
+                No Winners Yet
+            </h4>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+<!-- Impact Section -->
+
+<section class="container py-5">
+
+    <div class="text-center mb-5">
+
+        <h2>
+            Our Impact
+        </h2>
+
+        <p class="text-secondary">
+            Every game played helps support meaningful causes.
+        </p>
+
+    </div>
+
+    <div class="row g-4 text-center">
+
+        <div class="col-md-3">
+
+            <div class="glass-card">
+
+                <h2>1500+</h2>
+
+                <p>
+                    Active Members
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="glass-card">
+
+                <h2>₹250K</h2>
+
+                <p>
+                    Raised For Charity
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="glass-card">
+
+                <h2>50+</h2>
+
+                <p>
+                    Partner Charities
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="glass-card">
+
+                <h2>300+</h2>
+
+                <p>
+                    Prize Winners
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- How It Works -->
+
+<section class="container py-5">
+
+    <div class="text-center mb-5">
+
+        <h2>
+            How It Works
+        </h2>
+
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+
+            <div class="glass-card text-center">
+
+                <h3>
+                    1️⃣ Join
+                </h3>
+
+                <p>
+                    Subscribe to the platform and create your account.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="glass-card text-center">
+
+                <h3>
+                    2️⃣ Play
+                </h3>
+
+                <p>
+                    Enter your latest golf scores and participate in draws.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="glass-card text-center">
+
+                <h3>
+                    3️⃣ Win
+                </h3>
+
+                <p>
+                    Win rewards while supporting your chosen charity.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Featured Charities -->
+
+<section class="container py-5">
+
+    <div class="text-center mb-5">
+
+        <h2>
+            Featured Charities
+        </h2>
+
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+
+            <div class="glass-card text-center">
+
+                <h4>
+                    Education Fund
+                </h4>
+
+                <p>
+                    Supporting education for underprivileged children.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="glass-card text-center">
+
+                <h4>
+                    Health Support
+                </h4>
+
+                <p>
+                    Providing medical support to families in need.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="glass-card text-center">
+
+                <h4>
+                    Community Care
+                </h4>
+
+                <p>
+                    Helping communities through sustainable initiatives.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Prize Pool -->
+
+<section class="container py-5">
+
+    <div class="text-center mb-5">
+
+        <h2>
+            Monthly Prize Pool
+        </h2>
+
+    </div>
+
+    <div class="row g-4 text-center">
+
+        <div class="col-md-4">
+
+            <div class="glass-card">
+
+                <h3>
+                    5 Match
+                </h3>
+
+                <h1>
+                    ₹10,000
+                </h1>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="glass-card">
+
+                <h3>
+                    4 Match
+                </h3>
+
+                <h1>
+                    ₹3,000
+                </h1>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="glass-card">
+
+                <h3>
+                    3 Match
+                </h3>
+
+                <h1>
+                    ₹1,000
+                </h1>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CTA Section -->
+
+<section class="container py-5">
+
+    <div class="glass-card text-center">
+
+        <h2>
+            Ready To Make An Impact?
+        </h2>
+
+        <p class="mt-3">
+            Join thousands of members who are playing,
+            winning, and supporting charities.
+        </p>
+
+        <a href="/accounts/register/"
+           class="btn btn-primary btn-lg mt-3">
+
+            Join Now
+
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

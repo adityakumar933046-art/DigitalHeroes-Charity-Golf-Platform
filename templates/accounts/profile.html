@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="glass-card text-center">
+        {% if request.user.profile_image %}
+    <img src="{{ request.user.profile_image.url }}"
+         width="550"
+         height="550"
+         class="rounded-circle mb-4">
+{% else %}
+    <img src="https://via.placeholder.com/150"
+         class="rounded-circle mb-4">
+{% endif %}
+
+        <h2>{{ request.user.username }}</h2>
+
+        <p>Email: {{ request.user.email }}</p>
+
+        <p>Phone: {{ request.user.phone }}</p>
+
+        <p>Role: {{ request.user.role }}</p>
+
+    </div>
+
+</div>
+
+{% endblock %}

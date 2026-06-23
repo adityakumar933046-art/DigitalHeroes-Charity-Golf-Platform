@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h1 class="text-center mb-5">
+        Admin Analytics Dashboard
+    </h1>
+
+    <div class="row g-4">
+
+        <div class="col-md-3">
+            <div class="glass-card text-center">
+                <h5>Total Users</h5>
+                <h2>{{ total_users }}</h2>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="glass-card text-center">
+                <h5>Total Scores</h5>
+                <h2>{{ total_scores }}</h2>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="glass-card text-center">
+                <h5>Total Winners</h5>
+                <h2>{{ total_winners }}</h2>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="glass-card text-center">
+                <h5>Total Draws</h5>
+                <h2>{{ total_draws }}</h2>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row g-4 mt-4">
+
+        <div class="col-md-6">
+            <div class="glass-card text-center">
+                <h4>Total Charities</h4>
+                <h1>{{ total_charities }}</h1>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="glass-card text-center">
+                <h4>System Status</h4>
+                <h1 class="text-success">
+                    Active
+                </h1>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="glass-card mt-5">
+
+        <h3 class="mb-4">
+            Platform Overview
+        </h3>
+
+        <ul class="list-group">
+
+            <li class="list-group-item">
+                Registered Users: {{ total_users }}
+            </li>
+
+            <li class="list-group-item">
+                Total Scores Submitted: {{ total_scores }}
+            </li>
+
+            <li class="list-group-item">
+                Total Winners: {{ total_winners }}
+            </li>
+
+            <li class="list-group-item">
+                Total Draws Conducted: {{ total_draws }}
+            </li>
+
+            <li class="list-group-item">
+                Available Charities: {{ total_charities }}
+            </li>
+
+        </ul>
+
+    </div>
+
+</div>
+
+{% endblock %}

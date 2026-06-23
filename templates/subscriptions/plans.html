@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h1 class="text-center mb-5">
+        Subscription Plans
+    </h1>
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <div class="glass-card text-center">
+
+                <h3>Monthly Plan</h3>
+
+                <h1>₹999</h1>
+
+                <p>
+                    Access all features for 30 days.
+                </p>
+
+                <ul class="list-unstyled">
+                    <li>✔ Dashboard Access</li>
+                    <li>✔ Draw Participation</li>
+                    <li>✔ Charity Support</li>
+                    <li>✔ Score Tracking</li>
+                </ul>
+
+                <a
+                    href="/subscriptions/subscribe/monthly/"
+                    class="btn btn-primary btn-lg">
+
+                    Subscribe Monthly
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="glass-card text-center">
+
+                <h3>Yearly Plan</h3>
+
+                <h1>₹9999</h1>
+
+                <p>
+                    Save more with annual billing.
+                </p>
+
+                <ul class="list-unstyled">
+                    <li>✔ Dashboard Access</li>
+                    <li>✔ Draw Participation</li>
+                    <li>✔ Charity Support</li>
+                    <li>✔ Score Tracking</li>
+                    <li>✔ Priority Membership</li>
+                </ul>
+
+                <a
+                    href="/subscriptions/subscribe/yearly/"
+                    class="btn btn-success btn-lg">
+
+                    Subscribe Yearly
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
